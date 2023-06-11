@@ -10,9 +10,9 @@ export default defineConfig({
   output: "server",
   adapter: cloudflare(),
   experimental: {
-    assets: true,
+    assets: false,
   },
-  image: {
-    service: sharpImageService(),
-  },
+  // image: {
+  //   service: sharpImageService(),
+  // },
 });
