@@ -1,25 +1,24 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import axios from "axios";
+import type { ImagesResponse } from "../types/images";
 
-const imageFiles: ImageFiles = await Astro.glob("/src/assets/bg/*").then(
-	(files) => files.map((file) => file.default)
+const { data } = await axios.get<ImagesResponse>(
+	`${import.meta.env.STRAPI_URL}/api/bg?populate=images`
 );
+const images = data.data.attributes.images.data.map((image) => image);
 ---
 
 <Layout title="laura norwood">
-	<!-- <Modal id={1} /> -->
 	<main class="p-4">
 		<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
 			{
-				imageFiles.map((image) => (
-					<a href={image.src}>
+				images.map((image) => (
+					<a href={image.attributes.url}>
 						<img
-							alt={image.src}
-							src={image.src}
-							width={450}
-							height={600}
-							class="cursor-zoom-in hover:brightness-110 object-cover h-[450px] w-[600px]"
-							loading="lazy"
+							class="w-[600px] h-[450px] object-cover hover:brightness-110 cursor-zoom-in"
+							src={image.attributes.url}
+							alt={image.attributes.name}
 						/>
 					</a>
 				))

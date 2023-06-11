@@ -1,0 +1,28 @@
+---
+import Layout from "../layouts/Layout.astro";
+import axios from "axios";
+import type { ImagesResponse } from "../types/images";
+
+const { data } = await axios.get<ImagesResponse>(
+  `${import.meta.env.STRAPI_URL}/api/sketchbook?populate=images`
+);
+const images = data.data.attributes.images.data.map((image) => image);
+---
+
+<Layout title="laura norwood">
+  <main class="p-4">
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+      {
+        images.map((image) => (
+          <a href={image.attributes.url}>
+            <img
+              class="w-[600px] h-[450px] object-cover hover:brightness-110 cursor-zoom-in"
+              src={image.attributes.url}
+              alt={image.attributes.name}
+            />
+          </a>
+        ))
+      }
+    </div>
+  </main>
+</Layout>

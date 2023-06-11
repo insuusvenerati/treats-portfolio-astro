@@ -1,32 +1,32 @@
-export interface ImagesRoot {
-  data: Daum[];
+export type ImagesResponse = {
+  data: Data;
   meta: Meta;
-}
+};
 
-export interface Daum {
+export type Data = {
   id: number;
-  attributes: Attributes;
-}
+  attributes: DataAttributes;
+};
 
-export interface Attributes {
-  createdAt: string;
-  updatedAt: string;
+export type DataAttributes = {
+  createdAt: Date;
+  updatedAt: Date;
   images: Images;
-}
+};
 
-export interface Images {
-  data: Daum2[];
-}
+export type Images = {
+  data: Datum[];
+};
 
-export interface Daum2 {
+export type Datum = {
   id: number;
-  attributes: Attributes2;
-}
+  attributes: DatumAttributes;
+};
 
-export interface Attributes2 {
+export type DatumAttributes = {
   name: string;
-  alternativeText: any;
-  caption: any;
+  alternativeText: null;
+  caption: null;
   width: number;
   height: number;
   formats: Formats;
@@ -35,76 +35,27 @@ export interface Attributes2 {
   mime: string;
   size: number;
   url: string;
-  previewUrl: any;
+  previewUrl: null;
   provider: string;
-  provider_metadata: any;
-  createdAt: string;
-  updatedAt: string;
-  blurhash: string;
-}
+  provider_metadata: null;
+  createdAt: Date;
+  updatedAt: Date;
+};
 
-export interface Formats {
-  small: Small;
-  medium: Medium;
+export type Formats = {
   thumbnail: Thumbnail;
-  large?: Large;
-}
+};
 
-export interface Small {
+export type Thumbnail = {
   ext: string;
   url: string;
   hash: string;
   mime: string;
   name: string;
-  path: any;
+  path: null;
   size: number;
   width: number;
   height: number;
-}
+};
 
-export interface Medium {
-  ext: string;
-  url: string;
-  hash: string;
-  mime: string;
-  name: string;
-  path: any;
-  size: number;
-  width: number;
-  height: number;
-}
-
-export interface Thumbnail {
-  ext: string;
-  url: string;
-  hash: string;
-  mime: string;
-  name: string;
-  path: any;
-  size: number;
-  width: number;
-  height: number;
-}
-
-export interface Large {
-  ext: string;
-  url: string;
-  hash: string;
-  mime: string;
-  name: string;
-  path: any;
-  size: number;
-  width: number;
-  height: number;
-}
-
-export interface Meta {
-  pagination: Pagination;
-}
-
-export interface Pagination {
-  page: number;
-  pageSize: number;
-  pageCount: number;
-  total: number;
-}
+export type Meta = {};

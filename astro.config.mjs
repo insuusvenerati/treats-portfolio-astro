@@ -1,18 +1,18 @@
-import solidJs from "@astrojs/solid-js";
+import svelte from "@astrojs/svelte";
 import tailwind from "@astrojs/tailwind";
 import { defineConfig, sharpImageService } from "astro/config";
 
-import vercel from "@astrojs/vercel/serverless";
+import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), solidJs()],
+  integrations: [tailwind(), svelte()],
   output: "server",
-  adapter: vercel(),
+  adapter: cloudflare(),
   experimental: {
-    assets: true
+    assets: true,
   },
   image: {
-    service: sharpImageService()
-  }
+    service: sharpImageService(),
+  },
 });
