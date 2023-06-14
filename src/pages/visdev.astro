@@ -1,11 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import axios from "axios";
 import type { ImagesResponse } from "../types/images";
 
-const { data } = await axios.get<ImagesResponse>(
-  `${import.meta.env.STRAPI_URL}/api/sketchbook?populate=images`
-);
+const response = await fetch(`${import.meta.env.STRAPI_URL}/api/sketchbook?populate=images`);
+const data: ImagesResponse = await response.json();
 const images = data.data.attributes.images.data.map((image) => image);
 ---
 
