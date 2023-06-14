@@ -1,8 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import type { ImagesResponse } from "../types/images";
+export const prerender = true;
 
-const response = await fetch(`${import.meta.env.STRAPI_URL}/api/sketchbook?populate=images`);
+const response = await fetch(`${import.meta.env.PUBLIC_STRAPI_URL}/api/sketchbook?populate=images`);
 const data: ImagesResponse = await response.json();
 const images = data.data.attributes.images.data.map((image) => image);
 ---
